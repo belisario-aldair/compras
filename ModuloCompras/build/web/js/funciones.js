@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $("tr #btnDelete").click(function(e){
-        e.preventDefault(); // Evita redireccionamiento por <a href="#">
-        var idp = $(this).closest("tr").find("#idp").val(); // busca dentro del <tr>
+        e.preventDefault();
+        var idp = $(this).closest("tr").find("#idp").val(); 
 
         Swal.fire({
             title: "¿Estás seguro?",
@@ -13,7 +13,7 @@ $(document).ready(function(){
             confirmButtonText: "Sí, eliminar"
         }).then((result) => {
             if (result.isConfirmed) {
-                eliminar(idp); // 👈 aquí sí llamamos a la función
+                eliminar(idp);
             }
         });
     });
@@ -26,7 +26,7 @@ $(document).ready(function(){
             success: function (data) {
                 Swal.fire("¡Eliminado!", "El producto fue eliminado.", "success")
                 .then(() => {
-                    location.reload(); // recarga para reflejar los cambios
+                    location.reload();
                 });
             },
             error: function(){
