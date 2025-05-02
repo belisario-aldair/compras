@@ -21,10 +21,10 @@
                         <a class="nav-link active" aria-current="page" href="Controlador?accion=home">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Ofertas</a>
+                        <a class="nav-link" href="#">Ofertas del Día</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link disabled">Carrito de Compras</a>
+                          <a class="nav-link" href="Controlador?accion=Carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${contador}</label>)</i>Carrito</a>
                       </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -62,8 +62,8 @@
                             <div class="card-footer text-center">
                                 <label>${p.getDescripcion()}</label>
                                 <div>
-                                    <a href="" class="btn btn-outline-info">Agregar al Carrito</a>
-                                    <a href="" class="btn btn-danger">Comprar</a>
+                                    <a href="Controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn-outline-info">Agregar al Carrito</a>
+                                    <a href="Controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Comprar</a>
                                 </div>
                             </div>
                         </div>
