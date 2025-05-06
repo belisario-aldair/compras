@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $("tr #btnDelete").click(function(e){
-        e.preventDefault(); // Evita redireccionamiento por <a href="#">
-        var idp = $(this).closest("tr").find("#idp").val(); // busca dentro del <tr>
+        e.preventDefault();
+        var idp = $(this).closest("tr").find("#idp").val();
 
         Swal.fire({
             title: "¿Estás seguro?",
@@ -13,7 +13,7 @@ $(document).ready(function(){
             confirmButtonText: "Sí, eliminar"
         }).then((result) => {
             if (result.isConfirmed) {
-                eliminar(idp); // 👈 aquí sí llamamos a la función
+                eliminar(idp);
             }
         });
     });
@@ -26,7 +26,7 @@ $(document).ready(function(){
             success: function (data) {
                 Swal.fire("¡Eliminado!", "El producto fue eliminado.", "success")
                 .then(() => {
-                    location.reload(); // recarga para reflejar los cambios
+                    location.reload();
                 });
             },
             error: function(){
@@ -34,4 +34,18 @@ $(document).ready(function(){
             }
         });
     }
+    
+    $("#Cantidad").click(function(){
+        var idp=$(this).parent().find("#idpro").val();
+        var cantidad = $(this).parent().find("#Cantidad").val();
+        var url="Controlador?accion=ActualizarCantidad";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: "idp="+idp+"&Cantidad="+cantidad,
+            success: function (data, textStatys, jqXHR){
+                location.href="Controlador?accion=Carrito";
+            }
+        });
+    });
 });

@@ -1,3 +1,12 @@
+<%@page import="com.tims.modelo.Cliente"%>
+<%
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
+    if (cliente == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -73,7 +82,10 @@
                                         <img src="ControladorIMG?id=${car.getIdProducto()}" width="100" height="100">
                                     </td>
                                     <td>${car.getPrecioCompra()}</td>
-                                    <td>${car.getCantidad()}</td>
+                                    <td>
+                                        <input type="hidden" id="idpro" value="${car.getIdProducto()}">
+                                        <input type="number" id="Cantidad" value="${car.getCantidad()}" class="form-control text-center" min="1">
+                                    </td>
                                     <td>${car.getSubTotal()}</td>
                                     <td>
                                         <input type="hidden" id="idp" value="${car.getIdProducto()}">
