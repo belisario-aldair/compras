@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $("tr #btnDelete").click(function(e){
         e.preventDefault();
-        var idp = $(this).closest("tr").find("#idp").val(); 
+        var idp = $(this).closest("tr").find("#idp").val();
 
         Swal.fire({
             title: "¿Estás seguro?",
@@ -34,4 +34,18 @@ $(document).ready(function(){
             }
         });
     }
+    
+    $("#Cantidad").click(function(){
+        var idp=$(this).parent().find("#idpro").val();
+        var cantidad = $(this).parent().find("#Cantidad").val();
+        var url="Controlador?accion=ActualizarCantidad";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: "idp="+idp+"&Cantidad="+cantidad,
+            success: function (data, textStatys, jqXHR){
+                location.href="Controlador?accion=Carrito";
+            }
+        });
+    });
 });

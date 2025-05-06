@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/web/index.jsp</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/controlador/Controlador.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/controlador/ControladorIMG.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/modelo/Producto.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/modelo/ProductoDAO.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/config/Conexion.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/controlador/TestConexionServlet.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/modeloDAO/ClienteDao.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/web/login.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/web/registro.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/src/java/com/tims/modelo/Cliente.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/ModuloCompras/web/carrito.jsp</file>
         </group>
     </open-files>
 </project-private>
