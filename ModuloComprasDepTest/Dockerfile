@@ -1,7 +1,7 @@
-FROM oracle/glassfish:4.1
+FROM payara/server-full:5.2022.5-jdk8
 
-COPY ModuloCompras.war /glassfish/domains/domain1/autodeploy/
+COPY ModuloCompras.war $DEPLOY_DIR
 
 EXPOSE 8080
 
-CMD ["/glassfish/bin/asadmin", "start-domain", "--verbose"]
+CMD ["start-domain.sh"]
