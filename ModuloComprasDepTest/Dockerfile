@@ -1,7 +1,7 @@
-FROM glassfish:5
+FROM glassfish/server:5.0.1-jdk8
 
-COPY ModuloCompras.war /opt/glassfish5/glassfish/domains/domain1/autodeploy/
+COPY ModuloCompras.war /glassfish5/glassfish/domains/domain1/autodeploy/
 
 EXPOSE 8080
 
-CMD ["/opt/glassfish5/glassfish/bin/asadmin", "start-domain", "--verbose", "domain1"]
+CMD ["/glassfish5/glassfish/bin/asadmin", "start-domain", "--verbose"]
