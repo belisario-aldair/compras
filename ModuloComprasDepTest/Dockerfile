@@ -1,4 +1,4 @@
-FROM glassfish:latest
+FROM glassfish:5
 
 COPY ModuloCompras.war /opt/glassfish5/glassfish/domains/domain1/autodeploy/
 
