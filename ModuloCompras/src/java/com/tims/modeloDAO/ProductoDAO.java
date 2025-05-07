@@ -61,6 +61,31 @@ public class ProductoDAO {
         return productos;
     }
     
+    public List<Producto> buscar(String nombre) {
+        List<Producto> productos = new ArrayList<>();
+        String sql = "SELECT * FROM producto WHERE nombres LIKE ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + nombre + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setId(rs.getInt(1));
+                p.setNombres(rs.getString(2));
+                p.setFoto(rs.getBinaryStream(3));
+                p.setDescripcion(rs.getString(4));
+                p.setPrecio(rs.getDouble(5));
+                p.setStock(rs.getInt(6));
+                productos.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productos;
+    }
+
+    
     public void listarImg(int id, HttpServletResponse response){
         String sql = "select * from producto where idProducto="+id;
         InputStream inputStream = null;

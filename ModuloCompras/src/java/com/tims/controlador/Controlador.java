@@ -23,6 +23,8 @@ public class Controlador extends HttpServlet {
     Producto p = new Producto();
     List<Producto> productos = new ArrayList<>();
     List<Carrito> listaCarrito = new ArrayList<>();
+    ClienteDao cdao = new ClienteDao();
+    Cliente cliente = new Cliente();
     
     int item;
     double totalPagar = 0.0;
@@ -133,8 +135,7 @@ public class Controlador extends HttpServlet {
                 String email = request.getParameter("txtEmail");
                 String password = request.getParameter("txtPassword");
 
-                ClienteDao cdao = new ClienteDao();
-                Cliente cliente = cdao.validar(email, password);
+                cliente = cdao.validar(email, password);
 
                 if (cliente != null) {
                     HttpSession session = request.getSession();
@@ -146,14 +147,31 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
                 break;
-            case "Register":
-                String dni = request.getParameter("txtDni");
-                String nombres = request.getParameter("txtNombres");
-                String direccion = request.getParameter("txtDireccion");
-                String emailreg = request.getParameter("txtEmail");
-                String passwordreg = request.getParameter("txtPassword");
-                
-                //FALTAAAAAAAAAAAAAAAAAAAAAAA AQUI
+            case "Registrar":
+                cliente.setDni(request.getParameter("txtDni"));
+                cliente.setNombre(request.getParameter("txtNombres"));
+                cliente.setDireccion(request.getParameter("txtDireccion"));
+                cliente.setCorreo(request.getParameter("txtEmail"));
+                cliente.setPassword(request.getParameter("txtPassword"));
+
+                boolean registrado = cdao.registrar(cliente);
+                if (registrado) {
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("error", "No se pudo registrar. Inténtalo de nuevo.");
+                    request.getRequestDispatcher("registro.jsp").forward(request, response);
+                }
+                break;
+            case "Logout":
+                request.getSession().invalidate();
+                response.sendRedirect("index.jsp");
+                break;
+            case "Buscar":
+                String nombre = request.getParameter("txtBuscar");
+                List<Producto> productosBuscados = pdao.buscar(nombre);
+                request.setAttribute("productos", productosBuscados);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
             default:
                 request.setAttribute("productos", productos);
                 request.getRequestDispatcher("index.jsp").forward(request, response);

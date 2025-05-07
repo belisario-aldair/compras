@@ -1,3 +1,7 @@
+<%@page import="com.tims.modelo.Cliente"%>
+<%
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,24 +24,43 @@
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="Controlador?accion=home">Home</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Ofertas del Día</a>
-                      </li>
+                      
                       <li class="nav-item">
                           <a class="nav-link" href="Controlador?accion=Carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${contador}</label>)</i>Carrito</a>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form action="Controlador" method="get" class="d-flex">
+                        <input type="hidden" name="accion" value="Buscar" />
+                        <input class="form-control me-2" type="text" name="txtBuscar" placeholder="Buscar producto..." />
+                        <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
+                    <c:if test="${not empty param.accion and param.accion eq 'Buscar' and empty productos}">
+                        <script type="text/javascript">
+                            alert('No se encontraron productos con ese nombre.');
+                        </script>
+                    </c:if>
+
                       <ul class="navbar-nav">
-                          <li class="nav-item">
-                            <a class="btn btn-outline-light ms-2" href="login.jsp">
-                              <i class="fas fa-user"></i> Iniciar Sesión
-                            </a>
-                          </li>
-                      </ul>
+                            <c:choose>
+                              <c:when test="${not empty cliente}">
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user"></i> ${cliente.getNombre()}
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="Controlador?accion=Logout">Cerrar Sesión</a></li>
+                                  </ul>
+                                </li>
+                              </c:when>
+                              <c:otherwise>
+                                <li class="nav-item">
+                                  <a class="btn btn-outline-light ms-2" href="login.jsp">
+                                    <i class="fas fa-user"></i> Iniciar Sesión
+                                  </a>
+                                </li>
+                              </c:otherwise>
+                            </c:choose>
+                          </ul>
                   </div>
                 </div>
             </nav>

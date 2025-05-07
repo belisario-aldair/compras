@@ -29,29 +29,31 @@
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="Controlador?accion=home">Home</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Ofertas del Día</a>
-                      </li>
+                      
                       <li class="nav-item">
                           <a class="nav-link" href="Controlador?accion=home">Seguir Comprando</a>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                       <ul class="navbar-nav">
-                          <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Iniciar Sesión
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li>
+                        <c:choose>
+                          <c:when test="${not empty cliente}">
+                            <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> ${cliente.getNombre()}
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="Controlador?accion=Logout">Cerrar Sesión</a></li>
+                              </ul>
+                            </li>
+                          </c:when>
+                          <c:otherwise>
+                            <li class="nav-item">
+                              <a class="btn btn-outline-light ms-2" href="login.jsp">
+                                <i class="fas fa-user"></i> Iniciar Sesión
+                              </a>
+                            </li>
+                          </c:otherwise>
+                        </c:choose>
                       </ul>
                   </div>
                 </div>
