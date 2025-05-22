@@ -33,7 +33,7 @@ public class Controlador extends HttpServlet {
     int idp;
     Carrito car;
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    public void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         productos = pdao.listar();
